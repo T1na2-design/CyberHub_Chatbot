@@ -117,6 +117,42 @@ namespace CybersecurityChatbot.Services
                        "  • Don't ignore update notifications — they fix known vulnerabilities\n" +
                        "  • Remove software you no longer use to reduce your attack surface";
             }
+            else if (lowerQuery.Contains("identity theft") || lowerQuery.Contains("identity fraud") || lowerQuery.Contains("stolen identity"))
+            {
+                return "🪪 Identity Theft Prevention:\n" +
+                       "  • Monitor your bank statements and credit reports regularly\n" +
+                       "  • Shred documents that contain personal information before discarding\n" +
+                       "  • Never share your ID number or SSN unless absolutely necessary\n" +
+                       "  • Set up fraud alerts with your bank and credit bureau\n" +
+                       "  • Act fast if you suspect your identity has been compromised";
+            }
+            else if (lowerQuery.Contains("email security") || lowerQuery.Contains("email safety") || lowerQuery.Contains("secure email"))
+            {
+                return "📨 Email Security Best Practices:\n" +
+                       "  • Never open attachments from unknown or unexpected senders\n" +
+                       "  • Use a strong, unique password for your email account\n" +
+                       "  • Enable 2FA on all email accounts\n" +
+                       "  • Be cautious of links — hover to preview the URL before clicking\n" +
+                       "  • Use email encryption for sensitive communications";
+            }
+            else if (lowerQuery.Contains("backup") || lowerQuery.Contains("back up") || lowerQuery.Contains("data recovery"))
+            {
+                return "💾 Backup & Data Recovery:\n" +
+                       "  • Follow the 3-2-1 rule: 3 copies, 2 different media, 1 offsite\n" +
+                       "  • Automate your backups so you never forget\n" +
+                       "  • Test your backups regularly to ensure they can be restored\n" +
+                       "  • Keep at least one backup offline to protect against ransomware\n" +
+                       "  • Use cloud backup services with encryption for critical data";
+            }
+            else if (lowerQuery.Contains("mobile") || lowerQuery.Contains("phone security") || lowerQuery.Contains("smartphone") || lowerQuery.Contains("device security"))
+            {
+                return "📲 Mobile Device Security:\n" +
+                       "  • Use a strong PIN, password, or biometric lock on your device\n" +
+                       "  • Only install apps from official app stores\n" +
+                       "  • Review app permissions and deny unnecessary access\n" +
+                       "  • Enable remote wipe in case your device is lost or stolen\n" +
+                       "  • Keep your phone's OS and apps updated to the latest version";
+            }
             else
             {
                 return "🤔 I'm not sure about that specific topic. Try asking about:\n" +
@@ -131,6 +167,10 @@ namespace CybersecurityChatbot.Services
                        "  • Wi-Fi security\n" +
                        "  • Social media safety\n" +
                        "  • Software updates\n" +
+                       "  • Identity theft\n" +
+                       "  • Email security\n" +
+                       "  • Backup & data recovery\n" +
+                       "  • Mobile device security\n" +
                        "Or type 'help' to see all available topics.";
             }
         }

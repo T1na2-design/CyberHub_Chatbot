@@ -131,6 +131,10 @@ namespace CybersecurityChatbot
                 "📶 Wi-Fi Security",
                 "📱 Social Media Safety",
                 "🔄 Software Updates & Patching",
+                "🪪 Identity Theft Prevention",
+                "📨 Email Security",
+                "💾 Backup & Data Recovery",
+                "📲 Mobile Device Security",
                 "🤖 About Me"
             };
 
@@ -148,6 +152,8 @@ namespace CybersecurityChatbot
             ConsoleHelper.ShowMessage("  • 'What is ransomware?'", ConsoleColor.DarkCyan);
             ConsoleHelper.ShowMessage("  • 'How does social engineering work?'", ConsoleColor.DarkCyan);
             ConsoleHelper.ShowMessage("  • 'Tell me about 2FA'", ConsoleColor.DarkCyan);
+            ConsoleHelper.ShowMessage("  • 'How to prevent identity theft?'", ConsoleColor.DarkCyan);
+            ConsoleHelper.ShowMessage("  • 'Mobile device security tips'", ConsoleColor.DarkCyan);
 
             ConsoleHelper.AddSpacing(1);
         }
