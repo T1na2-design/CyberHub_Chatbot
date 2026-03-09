@@ -61,8 +61,14 @@ namespace CybersecurityChatbot
 
             _currentUser = new UserSession { UserName = userName };
 
-            // Personalized welcome
-            ConsoleHelper.ShowMessage($"\nHello, {_currentUser.UserName}! 👋", ConsoleColor.Cyan);
+            // Personalized welcome with time-based greeting
+            string greeting = DateTime.Now.Hour switch
+            {
+                >= 5 and < 12 => "Good morning",
+                >= 12 and < 17 => "Good afternoon",
+                _ => "Good evening"
+            };
+            ConsoleHelper.ShowMessage($"\n{greeting}, {_currentUser.UserName}! 👋", ConsoleColor.Cyan);
             ConsoleHelper.ShowMessage("I'm here to help you learn about online safety practices.", ConsoleColor.Cyan);
 
             // Show available topics
