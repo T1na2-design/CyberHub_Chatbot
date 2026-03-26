@@ -40,7 +40,7 @@
 - Responds to social cues (greetings, thank-you messages)
 
 ### 🧠 Response System
-- Keyword-based topic matching across **15 cybersecurity topics**
+- Keyword-based topic matching across **16 cybersecurity topics**
 - Conversational handlers for greetings, purpose questions, and gratitude
 - Informative fallback response listing all available topics when a query is unrecognized
 
@@ -196,6 +196,7 @@ What's your purpose?
 | 13 | 📨 Email Security | `email security`, `email safety`, `secure email` |
 | 14 | 💾 Backup & Data Recovery | `backup`, `back up`, `data recovery` |
 | 15 | 📲 Mobile Device Security | `mobile`, `phone security`, `smartphone`, `device security` |
+| 16 | 🏠 IoT & Smart Home Security | `iot`, `smart home`, `smart device` |
 
 Each topic returns **5 actionable tips** to help users improve their cybersecurity posture.
 

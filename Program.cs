@@ -141,6 +141,7 @@ namespace CybersecurityChatbot
                 "📨 Email Security",
                 "💾 Backup & Data Recovery",
                 "📲 Mobile Device Security",
+                "🏠 IoT & Smart Home Security",
                 "🤖 About Me"
             };
 
@@ -160,6 +161,7 @@ namespace CybersecurityChatbot
             ConsoleHelper.ShowMessage("  • 'Tell me about 2FA'", ConsoleColor.DarkCyan);
             ConsoleHelper.ShowMessage("  • 'How to prevent identity theft?'", ConsoleColor.DarkCyan);
             ConsoleHelper.ShowMessage("  • 'Mobile device security tips'", ConsoleColor.DarkCyan);
+            ConsoleHelper.ShowMessage("  • 'Are smart home devices safe?'", ConsoleColor.DarkCyan);
 
             ConsoleHelper.AddSpacing(1);
         }

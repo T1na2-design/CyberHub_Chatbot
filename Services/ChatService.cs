@@ -153,6 +153,15 @@ namespace CybersecurityChatbot.Services
                        "  • Enable remote wipe in case your device is lost or stolen\n" +
                        "  • Keep your phone's OS and apps updated to the latest version";
             }
+            else if (lowerQuery.Contains("iot") || lowerQuery.Contains("smart home") || lowerQuery.Contains("smart device"))
+            {
+                return "🏠 IoT & Smart Home Security:\n" +
+                       "  • Change default passwords on all smart devices and routers\n" +
+                       "  • Put smart devices on a separate guest Wi-Fi network\n" +
+                       "  • Keep device firmware updated to patch vulnerabilities\n" +
+                       "  • Disable features you don't use, like remote access or cameras\n" +
+                       "  • Review privacy policies to understand what data is collected";
+            }
             else
             {
                 return "🤔 I'm not sure about that specific topic. Try asking about:\n" +
@@ -171,6 +180,7 @@ namespace CybersecurityChatbot.Services
                        "  • Email security\n" +
                        "  • Backup & data recovery\n" +
                        "  • Mobile device security\n" +
+                       "  • IoT & Smart Home security\n" +
                        "Or type 'help' to see all available topics.";
             }
         }
