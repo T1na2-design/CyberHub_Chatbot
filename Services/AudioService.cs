@@ -7,7 +7,7 @@ namespace CybersecurityChatbot.Services
 {
     public class AudioService
     {
-        private const string GreetingAudioPath = "Audio/greeting.wav";
+        private const string GreetingAudioPath = "Audio/greeting.wav"; //Chatbot welcome greeting audio file path
 
         public async Task PlayVoiceGreetingAsync()
         {

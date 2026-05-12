@@ -1,6 +1,6 @@
 namespace CybersecurityChatbot.Utils
 {
-    public static class AsciiArt
+    public static class AsciiArtConverter
     {
         public static string GetCyberSecurityLogo()
         {
@@ -17,8 +17,7 @@ namespace CybersecurityChatbot.Utils
 ║                  🔒 CYBERSECURITY AWARENESS BOT 🔒                   ║
 ║                       Your Digital Safety Guide                      ║
 ║                                                                      ║
-╚══════════════════════════════════════════════════════════════════════╝
-";
+╚══════════════════════════════════════════════════════════════════════╝";
         }
     }
 }
