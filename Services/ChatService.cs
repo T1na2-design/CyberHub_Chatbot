@@ -20,26 +20,33 @@ namespace CybersecurityChatbot.Services
 
         public string GetResponse(string query)
         {
-            // Sentiment prefix
-            string prefix = _sentimentAnalyzer.GetSentimentPrefix(query);
+            // Sentiment analysis
+            var (prefix, sentiment) = _sentimentAnalyzer.Analyze(query);
+
+            // Topic Identification
+            string topic = _keywordRecognizer.IdentifyTopic(query);
 
             // Check for follow up
             if (_memoryService.Context.IsFollowUp(query) && !string.IsNullOrEmpty(_memoryService.Context.LastTopic))
             {
-                return prefix + "Here is another tip on " + _memoryService.Context.LastTopic + ":\n" + 
-                       _responseManager.GetRandomResponse(_memoryService.Context.LastTopic);
+                topic = _memoryService.Context.LastTopic;
+                _memoryService.RecordInteraction(topic, sentiment);
+                string memoryImprint = _memoryService.GetMemoryImprint();
+
+                return prefix + "Here is another tip on " + topic + ":\n" + 
+                       _responseManager.GetRandomResponse(topic) + memoryImprint;
             }
 
-            // Identify topic
-            string topic = _keywordRecognizer.IdentifyTopic(query);
             if (!string.IsNullOrEmpty(topic))
             {
-                _memoryService.Context.LastTopic = topic;
-                _memoryService.Profile.FavoriteTopic = topic; // Simple interest tracking
-                return prefix + "Let's talk about " + topic + ".\n" + _responseManager.GetRandomResponse(topic);
+                _memoryService.RecordInteraction(topic, sentiment);
+                string memoryImprint = _memoryService.GetMemoryImprint();
+
+                return prefix + "Let's talk about " + topic + ".\n" + _responseManager.GetRandomResponse(topic) + memoryImprint;
             }
 
             // Fallback
+            _memoryService.RecordInteraction(string.Empty, sentiment);
             return prefix + "I'm not sure I understand. Try asking about passwords, phishing, privacy, scanning, or browsing.";
         }
     }
