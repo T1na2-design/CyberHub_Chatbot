@@ -1,12 +1,12 @@
 # 🔒 CyberHub_Chatbot
 
-> A console-based cybersecurity awareness chatbot built with .NET 10, designed to educate users about online safety through an interactive, personalized conversation experience.
+> A WPF-based cybersecurity awareness chatbot built with .NET 10, designed to educate users about online safety through chat, tasks, quizzes, and activity tracking.
 
 ---
 
 ## 📖 Project Overview
 
-**CyberHub_Chatbot** is an interactive command-line chatbot that teaches cybersecurity best practices and raises digital safety awareness. It uses a friendly, conversational approach — complete with ASCII art, color-coded output, typewriter effects, and audio greetings — to make learning about cybersecurity engaging and accessible.
+**CyberHub_Chatbot** is an interactive desktop chatbot that teaches cybersecurity best practices and raises digital safety awareness. It uses a friendly, conversational approach with chat guidance, tabbed tools, activity logging, quiz feedback, and a dark UI theme to make learning engaging and accessible.
 
 **Target Audience:**
 - Students and beginners learning about online safety
@@ -22,22 +22,20 @@
 
 ## ✨ Features
 
+### 💬 Chat Experience
+- Personalized conversation flow that captures the user's name and adapts responses
+- Natural-language intent handling for tasks, quiz launching, and log viewing
+- Friendly fallback responses for unrecognized questions
+
 ### 🔊 Voice & Audio
 - Plays a `.wav` audio greeting on startup via `SoundPlayer`
 - Audio playback runs asynchronously to avoid blocking the UI
-- Graceful fallback — the chatbot continues normally if the audio file is missing or playback fails
+- Graceful fallback if the audio file is missing or playback fails
 
-### 🎨 Visual Elements
-- Custom ASCII art banner displayed at launch (`AsciiArt.GetCyberSecurityLogo()`)
-- Color-coded console output (green prompts, cyan headers, yellow topics, red errors)
-- Bordered messages using Unicode box-drawing characters (`╔═╗║╚╝`)
-- Section headers for organized topic display
-
-### 💬 User Interaction
-- Personalized experience — asks for the user's name and addresses them throughout the session
-- Natural conversation flow with a typewriter animation effect on responses
-- Supports commands like `help` (topic list) and `exit` (graceful goodbye)
-- Responds to social cues (greetings, thank-you messages)
+### 🎨 Visual Design
+- Dark theme built for readability across the chat, task manager, quiz, and activity log tabs
+- ASCII art banner shown at launch
+- Color-coded UI feedback for success, warnings, and errors
 
 ### 🧠 Response System
 - Keyword-based topic matching across **16 cybersecurity topics**
@@ -46,14 +44,15 @@
 
 ### ✅ Input Handling
 - Empty input validation with user-friendly prompts
-- Name validation loop — does not allow blank usernames
+- Name validation loop that does not allow blank usernames
 - Case-insensitive query matching
 - Global error handling with `try/catch` in the main loop
 
-### 🖥️ UI Enhancements
-- UTF-8 console encoding for proper emoji and Unicode rendering
-- Adjustable spacing between messages for readability
-- Typewriter effect with surrogate-pair-safe character rendering
+### 🧩 Part 3 Features
+- Task Manager tab for creating, completing, deleting, and tracking tasks
+- Quiz tab with 10 cybersecurity questions, score tracking, and results feedback
+- Activity Log tab for viewing, exporting, refreshing, and clearing logged actions
+- NLP-based chat routing that points users to the right tab or feature
 
 ---
 
@@ -61,24 +60,26 @@
 
 ### Code Organization
 
-The project follows a clean **separation of concerns** pattern:
+The project follows a clean separation of concerns:
 
 | Folder/File | Responsibility |
 |---|---|
-| `Program.cs` | Application entry point, initialization, main chat loop |
-| `Services/ChatService.cs` | Query processing and response generation |
-| `Services/AudioService.cs` | Audio greeting playback |
-| `Utils/ConsoleHelper.cs` | Console I/O utilities (colors, borders, typewriter effect) |
-| `Utils/AsciiArt.cs` | ASCII art banner content |
-| `Models/UserSession.cs` | User session data model |
+| `MainWindow.xaml` | Main WPF shell and tab navigation |
+| `ChatService.cs` | Chat response generation |
+| `AudioService.cs` | Audio greeting playback |
+| `NLPHandler.cs` | Intent detection and routing |
+| `TaskManagerControl.xaml` | Task management UI |
+| `QuizControl.xaml` | Quiz UI and gameplay flow |
+| `ActivityLogControl.xaml` | Activity log viewer |
+| `Models/*.cs` | Data models for sessions, tasks, and logs |
 
 ### Key Technologies
 
-- **.NET 10** (Console Application)
-- **C# 14**
+- **.NET 10** (WPF Desktop Application)
+- **C#**
+- **WPF XAML** for desktop UI composition
 - **System.Media.SoundPlayer** (via `System.Windows.Extensions` NuGet package)
-- **System.Text.Encoding.UTF8** for full Unicode/emoji support
-- **Async/Await** for non-blocking audio and typewriter effects
+- **Async/Await** for non-blocking audio and UI responsiveness
 
 ---
 
@@ -86,19 +87,17 @@ The project follows a clean **separation of concerns** pattern:
 
 ```
 CyberHub_Chatbot/
+├── ActivityLogControl.xaml
+├── AddTaskDialog.xaml
+├── App.xaml
+├── MainWindow.xaml
+├── QuizControl.xaml
+├── TaskManagerControl.xaml
 ├── Audio/
-│   └── greeting.wav              # Startup audio greeting
 ├── Models/
-│   └── UserSession.cs            # User session data (name, start time, message count)
 ├── Services/
-│   ├── AudioService.cs           # Async WAV audio playback
-│   └── ChatService.cs            # Keyword-based response engine
 ├── Utils/
-│   ├── AsciiArt.cs               # ASCII art logo
-│   └── ConsoleHelper.cs          # Console display utilities
-├── Program.cs                    # Entry point and chat loop
-├── CyberHub_Chatbot.csproj       # Project configuration
-└── README.md
+└── CyberHub_Chatbot.csproj
 ```
 
 ---
@@ -108,8 +107,8 @@ CyberHub_Chatbot/
 ### Prerequisites
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later
-- **Windows** (required for `SoundPlayer` audio playback)
-- A terminal that supports Unicode/UTF-8
+- **Windows** (required for WPF and `SoundPlayer` audio playback)
+- A system that can run WPF desktop apps
 
 ### Installation Steps
 
@@ -148,19 +147,18 @@ dotnet run
 
 ### What to Expect
 
-1. An ASCII art banner is displayed
-2. A voice greeting plays (if `Audio/greeting.wav` exists)
-3. A bordered welcome message appears
-4. You are prompted to enter your name
-5. A personalized greeting and topic list are shown
-6. The interactive chat loop begins
+1. The app opens in a dark-themed desktop window
+2. A voice greeting plays if `Audio/greeting.wav` exists
+3. The chat tab prompts for your name and guides you into the app
+4. You can switch between Chat, Tasks, Quiz, and Activity Log tabs
+5. The quiz and log tabs show live activity updates as you use the app
 
-### Available Commands
+### Chat Routing
 
-| Command | Action |
-|---|---|
-| `help` | Display all available cybersecurity topics |
-| `exit` | End the session with a goodbye message |
+- Type `add task` or `new task` to open the Task Manager tab
+- Type `start quiz` or `play quiz` to open the Quiz tab
+- Type `show log` or `activity log` to open the Activity Log tab
+- Other messages use the standard chat response flow
 
 ### Example Questions
 
@@ -199,6 +197,34 @@ What's your purpose?
 | 16 | 🏠 IoT & Smart Home Security | `iot`, `smart home`, `smart device` |
 
 Each topic returns **5 actionable tips** to help users improve their cybersecurity posture.
+
+---
+
+## 🧩 Part 3 Feature Summary
+
+### Task Manager
+- Create tasks with title, description, and reminder date
+- View tasks in a DataGrid
+- Mark tasks as completed or delete them
+- Track pending and completed counts
+- Log task activity and view upcoming reminders
+
+### Quiz Game
+- 10-question cybersecurity quiz
+- Multiple choice and true/false questions
+- Immediate feedback with score tracking
+- Progress indicator and restart flow
+- Randomized question order
+
+### Activity Log
+- Logs all major user actions with timestamps
+- Categories include Tasks, Quiz, and Chat
+- View recent activity, export logs, and clear logs
+- Display format: [Timestamp] Category: Action - Details
+
+### NLP Routing
+- Detects simple intents for adding tasks, starting the quiz, and showing the log
+- Routes chat messages to the right feature tab
 
 ---
 
@@ -284,11 +310,11 @@ jobs:
 - Run `dotnet restore` to restore the `System.Windows.Extensions` NuGet package
 - If you see `CS1069` for `SoundPlayer`, the package reference may be missing — verify it exists in the `.csproj`
 
-### Console Display Issues (Garbled Characters / Beeping)
+### UI Readability Issues
 
-- The application sets `Console.OutputEncoding = Encoding.UTF8` at startup
-- Use a terminal that supports UTF-8 (Windows Terminal recommended)
-- Legacy `cmd.exe` may not render all emoji correctly
+- Make sure the window is not scaled too small; the quiz and activity log panels need room to avoid text crowding
+- If the text looks washed out, use the updated dark theme styles in the WPF controls
+- Refresh the Activity Log tab after switching between tabs to see the latest shared entries
 
 ---
 
