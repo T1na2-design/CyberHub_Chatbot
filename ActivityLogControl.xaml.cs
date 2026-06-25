@@ -62,7 +62,7 @@ namespace CybersecurityChatbot
 
         private void RefreshActivityLog()
         {
-            var logs = _activityLogService.GetRecentLogs(50);
+            var logs = _activityLogService.GetAllLogs();
             ActivityListBox.ItemsSource = logs;
             TotalEntriesTxt.Text = _activityLogService.GetLogCount().ToString();
         }

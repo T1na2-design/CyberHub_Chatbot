@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using CybersecurityChatbot.Services;
 
 namespace CybersecurityChatbot
@@ -48,7 +49,8 @@ namespace CybersecurityChatbot
             {
                 buttons[i].Content = question.Options[i];
                 buttons[i].Visibility = Visibility.Visible;
-                buttons[i].Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#44475A");
+                buttons[i].Background = (Brush)new BrushConverter().ConvertFromString("#3A3E57");
+                buttons[i].Foreground = Brushes.White;
                 buttons[i].IsEnabled = true;
             }
 
@@ -77,15 +79,18 @@ namespace CybersecurityChatbot
 
                 if (isCorrect)
                 {
-                    btn.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#50FA7B");
+                    btn.Background = (Brush)new BrushConverter().ConvertFromString("#4BBF73");
+                    btn.Foreground = Brushes.White;
                     QuestionTxt.Text += "\n✅ Correct!";
                 }
                 else
                 {
-                    btn.Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#FF5555");
+                    btn.Background = (Brush)new BrushConverter().ConvertFromString("#D36B6B");
+                    btn.Foreground = Brushes.White;
                     if (correctIndex >= 0 && correctIndex < buttons.Length)
                     {
-                        buttons[correctIndex].Background = (System.Windows.Media.Brush)new System.Windows.Media.BrushConverter().ConvertFromString("#50FA7B");
+                        buttons[correctIndex].Background = (Brush)new BrushConverter().ConvertFromString("#4BBF73");
+                        buttons[correctIndex].Foreground = Brushes.White;
                     }
                     QuestionTxt.Text += "\n❌ Incorrect!";
                 }

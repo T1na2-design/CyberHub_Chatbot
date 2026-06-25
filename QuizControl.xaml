@@ -1,7 +1,7 @@
 <UserControl x:Class="CybersecurityChatbot.QuizControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Background="#1E1E2E" Foreground="White">
+             Background="#1E1E2E" Foreground="#F8F8F2">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,38 +13,41 @@
 
         <!-- Header -->
         <TextBlock Grid.Row="0" Text="🎯 Cybersecurity Quiz" FontSize="20" FontWeight="Bold" 
-                   Foreground="#00FF00" Margin="0,0,0,10"/>
+               Foreground="#8BE9FD" Margin="0,0,0,10"/>
 
         <!-- Quiz Info -->
-        <Border Grid.Row="1" Background="#282A36" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+        <Border Grid.Row="1" Background="#232536" CornerRadius="5" Padding="10" Margin="0,0,0,10">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Foreground="#8BE9FD" Text="Question: "/>
-                <TextBlock Grid.Column="0" Foreground="#FF79C6" x:Name="QuestionNumTxt" Text="0/10" Margin="5,0,0,0"/>
-                <TextBlock Grid.Column="2" Foreground="#8BE9FD" Text="Score: "/>
-                <TextBlock Grid.Column="2" Foreground="#50FA7B" x:Name="ScoreTxt" Text="0" Margin="5,0,0,0"/>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Foreground="#C4C8D4" Text="Question"/>
+                    <TextBlock x:Name="QuestionNumTxt" Foreground="#F8F8F2" Text="0/10" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                    <TextBlock Foreground="#C4C8D4" Text="Score" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="ScoreTxt" Foreground="#8BE9FD" Text="0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"/>
+                </StackPanel>
             </Grid>
         </Border>
 
         <!-- Question Display -->
-        <Border Grid.Row="2" Background="#282A36" CornerRadius="5" Padding="15" Margin="0,0,0,10" x:Name="QuestionPanel">
-            <TextBlock x:Name="QuestionTxt" Text="Click 'Start Quiz' to begin" Foreground="White" 
+        <Border Grid.Row="2" Background="#232536" CornerRadius="5" Padding="15" Margin="0,0,0,10" x:Name="QuestionPanel">
+            <TextBlock x:Name="QuestionTxt" Text="Click 'Start Quiz' to begin" Foreground="#F8F8F2" 
                        FontSize="16" TextWrapping="Wrap" MinHeight="50"/>
         </Border>
 
         <!-- Options -->
         <StackPanel Grid.Row="3">
-            <Button x:Name="OptionBtn1" Content="Option 1" Height="50" Background="#44475A" Foreground="White" 
+                <Button x:Name="OptionBtn1" Content="Option 1" Height="50" Background="#3A3E57" Foreground="#F8F8F2" 
                     FontSize="14" Click="OptionBtn_Click" Tag="0" Visibility="Collapsed" Margin="0,0,0,10"/>
-            <Button x:Name="OptionBtn2" Content="Option 2" Height="50" Background="#44475A" Foreground="White" 
+                <Button x:Name="OptionBtn2" Content="Option 2" Height="50" Background="#3A3E57" Foreground="#F8F8F2" 
                     FontSize="14" Click="OptionBtn_Click" Tag="1" Visibility="Collapsed" Margin="0,0,0,10"/>
-            <Button x:Name="OptionBtn3" Content="Option 3" Height="50" Background="#44475A" Foreground="White" 
+                <Button x:Name="OptionBtn3" Content="Option 3" Height="50" Background="#3A3E57" Foreground="#F8F8F2" 
                     FontSize="14" Click="OptionBtn_Click" Tag="2" Visibility="Collapsed" Margin="0,0,0,10"/>
-            <Button x:Name="OptionBtn4" Content="Option 4" Height="50" Background="#44475A" Foreground="White" 
+                <Button x:Name="OptionBtn4" Content="Option 4" Height="50" Background="#3A3E57" Foreground="#F8F8F2" 
                     FontSize="14" Click="OptionBtn_Click" Tag="3" Visibility="Collapsed"/>
         </StackPanel>
 
