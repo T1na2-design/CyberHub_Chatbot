@@ -1,0 +1,61 @@
+<UserControl x:Class="CybersecurityChatbot.QuizControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#1E1E2E" Foreground="White">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="🎯 Cybersecurity Quiz" FontSize="20" FontWeight="Bold" 
+                   Foreground="#00FF00" Margin="0,0,0,10"/>
+
+        <!-- Quiz Info -->
+        <Border Grid.Row="1" Background="#282A36" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Foreground="#8BE9FD" Text="Question: "/>
+                <TextBlock Grid.Column="0" Foreground="#FF79C6" x:Name="QuestionNumTxt" Text="0/10" Margin="5,0,0,0"/>
+                <TextBlock Grid.Column="2" Foreground="#8BE9FD" Text="Score: "/>
+                <TextBlock Grid.Column="2" Foreground="#50FA7B" x:Name="ScoreTxt" Text="0" Margin="5,0,0,0"/>
+            </Grid>
+        </Border>
+
+        <!-- Question Display -->
+        <Border Grid.Row="2" Background="#282A36" CornerRadius="5" Padding="15" Margin="0,0,0,10" x:Name="QuestionPanel">
+            <TextBlock x:Name="QuestionTxt" Text="Click 'Start Quiz' to begin" Foreground="White" 
+                       FontSize="16" TextWrapping="Wrap" MinHeight="50"/>
+        </Border>
+
+        <!-- Options -->
+        <StackPanel Grid.Row="3">
+            <Button x:Name="OptionBtn1" Content="Option 1" Height="50" Background="#44475A" Foreground="White" 
+                    FontSize="14" Click="OptionBtn_Click" Tag="0" Visibility="Collapsed" Margin="0,0,0,10"/>
+            <Button x:Name="OptionBtn2" Content="Option 2" Height="50" Background="#44475A" Foreground="White" 
+                    FontSize="14" Click="OptionBtn_Click" Tag="1" Visibility="Collapsed" Margin="0,0,0,10"/>
+            <Button x:Name="OptionBtn3" Content="Option 3" Height="50" Background="#44475A" Foreground="White" 
+                    FontSize="14" Click="OptionBtn_Click" Tag="2" Visibility="Collapsed" Margin="0,0,0,10"/>
+            <Button x:Name="OptionBtn4" Content="Option 4" Height="50" Background="#44475A" Foreground="White" 
+                    FontSize="14" Click="OptionBtn_Click" Tag="3" Visibility="Collapsed"/>
+        </StackPanel>
+
+        <!-- Control Buttons -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Start Quiz" Width="120" Background="#50FA7B" Foreground="Black" 
+                    FontWeight="Bold" Click="StartQuizBtn_Click" x:Name="StartBtn" Margin="0,0,10,0"/>
+            <Button Content="Next" Width="120" Background="#8BE9FD" Foreground="Black" 
+                    FontWeight="Bold" Click="NextBtn_Click" x:Name="NextBtn" Visibility="Collapsed" Margin="0,0,10,0"/>
+            <Button Content="Restart" Width="120" Background="#BD93F9" Foreground="White" 
+                    FontWeight="Bold" Click="RestartBtn_Click" x:Name="RestartBtn" Visibility="Collapsed"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

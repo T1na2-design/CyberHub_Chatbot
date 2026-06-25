@@ -1,0 +1,56 @@
+<UserControl x:Class="CybersecurityChatbot.ActivityLogControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#1E1E2E" Foreground="White">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="📊 Activity Log" FontSize="20" FontWeight="Bold" 
+                   Foreground="#00FF00" Margin="0,0,0,10"/>
+
+        <!-- Stats Bar -->
+        <Border Grid.Row="1" Background="#282A36" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="#8BE9FD" Text="Total Entries: "/>
+                <TextBlock x:Name="TotalEntriesTxt" Foreground="#FF79C6" Text="0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Activity ListView -->
+        <ListBox Grid.Row="2" x:Name="ActivityListBox" Background="#282A36" Foreground="White"
+                 Margin="0,0,0,10" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#44475A" CornerRadius="3" Padding="8" Margin="0,2">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                                <TextBlock Foreground="#8BE9FD" Text="[" FontWeight="Bold"/>
+                                <TextBlock Foreground="#FF79C6" Text="{Binding Timestamp, StringFormat='yyyy-MM-dd HH:mm:ss'}" FontWeight="Bold"/>
+                                <TextBlock Foreground="#8BE9FD" Text="]" FontWeight="Bold"/>
+                                <TextBlock Foreground="#50FA7B" Text="{Binding Category}" Margin="10,0,0,0" FontWeight="Bold"/>
+                            </StackPanel>
+                            <TextBlock Foreground="White" Text="{Binding Action}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                            <TextBlock Foreground="#CCCCCC" Text="{Binding Details}" TextWrapping="Wrap" Margin="0,2,0,0" FontSize="12" FontStyle="Italic"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Button Panel -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Content="Refresh" Width="100" Background="#50FA7B" Foreground="Black" 
+                    FontWeight="Bold" Click="RefreshBtn_Click" Margin="0,0,10,0"/>
+            <Button Content="Clear All" Width="100" Background="#FF5555" Foreground="White" 
+                    FontWeight="Bold" Click="ClearBtn_Click" Margin="0,0,10,0"/>
+            <Button Content="Export" Width="100" Background="#BD93F9" Foreground="White" 
+                    FontWeight="Bold" Click="ExportBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

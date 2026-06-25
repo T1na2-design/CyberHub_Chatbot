@@ -15,6 +15,7 @@ namespace CybersecurityChatbot
         private readonly ChatService _chatService;
         private readonly AudioService _audioService;
         private readonly MemoryService _memoryService;
+        private readonly NLPHandler _nlpHandler;
         private bool _isNameCaptured = false;
 
         public MainWindow()
@@ -24,6 +25,7 @@ namespace CybersecurityChatbot
             _memoryService = new MemoryService();
             _chatService = new ChatService(_memoryService);
             _audioService = new AudioService();
+            _nlpHandler = new NLPHandler();
             
             HeaderAscii.Text = AsciiArtConverter.GetCyberSecurityLogo();
             
@@ -49,7 +51,7 @@ namespace CybersecurityChatbot
             }
         }
 
-        private void ClearBtn_Click(object sender, RoutedEventArgs e)
+        private void ClearChatBtn_Click(object sender, RoutedEventArgs e)
         {
             ChatPanel.Children.Clear();
         }
@@ -71,8 +73,42 @@ namespace CybersecurityChatbot
                 return;
             }
 
-            string response = _chatService.GetResponse(input);
-            AddBotMessage(response);
+            // Detect intent using NLPHandler
+            var intent = _nlpHandler.DetectIntent(input);
+            
+            switch (intent)
+            {
+                case NLPHandler.Intent.AddTask:
+                    AddBotMessage("Let me open the Task Manager for you! 📋\nYou can add a new task with title, description, and reminder date.");
+                    TaskManagerTab.Focus();
+                    var tabControl = (TabControl)LogicalTreeHelper.FindLogicalNode(this, "");
+                    if (this.FindName("TaskManagerTab") is TaskManagerControl)
+                    {
+                        // This will be handled by the user manually
+                        AddBotMessage("💡 Tip: Click the 'Tasks' tab to manage your tasks!");
+                    }
+                    TaskManagerTab.GetActivityLogService().LogActivity("Task Manager Opened", "User requested task management from chat", "Chat");
+                    break;
+
+                case NLPHandler.Intent.StartQuiz:
+                    AddBotMessage("Let me start the Cybersecurity Quiz! 🎯\nYou'll be tested on phishing, passwords, browsing safety, and social engineering. Good luck!");
+                    AddBotMessage("💡 Tip: Click the 'Quiz' tab to begin!");
+                    QuizTab.GetActivityLogService().LogActivity("Quiz Opened", "User requested quiz from chat", "Chat");
+                    break;
+
+                case NLPHandler.Intent.ShowLog:
+                    AddBotMessage("Here's your activity log! 📊\nIt shows all tasks, quizzes, and interactions you've had in the chatbot.");
+                    AddBotMessage("💡 Tip: Click the 'Activity Log' tab to see details!");
+                    ActivityLogTab.GetActivityLogService().LogActivity("Activity Log Opened", "User requested activity log from chat", "Chat");
+                    break;
+
+                default:
+                    // Regular chat response
+                    string response = _chatService.GetResponse(input);
+                    AddBotMessage(response);
+                    break;
+            }
+
             UpdateUserInfo();
         }
 

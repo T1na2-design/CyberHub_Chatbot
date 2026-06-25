@@ -1,0 +1,55 @@
+<UserControl x:Class="CybersecurityChatbot.TaskManagerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#1E1E2E" Foreground="White">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="📋 Task Manager" FontSize="20" FontWeight="Bold" 
+                   Foreground="#00FF00" Margin="0,0,0,10"/>
+
+        <!-- Stats Bar -->
+        <Border Grid.Row="1" Background="#282A36" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="#8BE9FD" Text="Pending: "/>
+                <TextBlock x:Name="PendingCountTxt" Foreground="#FF79C6" Text="0" Margin="5,0,20,0"/>
+                <TextBlock Foreground="#8BE9FD" Text="Completed: "/>
+                <TextBlock x:Name="CompletedCountTxt" Foreground="#50FA7B" Text="0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Task DataGrid -->
+        <DataGrid Grid.Row="2" x:Name="TaskDataGrid" Background="#282A36" Foreground="White"
+                  AlternatingRowBackground="#44475A" BorderThickness="1" BorderBrush="#6272A4"
+                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="40" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Reminder Date" Binding="{Binding ReminderDate, StringFormat='yyyy-MM-dd'}" 
+                                  Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding IsCompleted, StringFormat='Completed:{0}'}" 
+                                  Width="100" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Button Panel -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Content="Add Task" Width="100" Background="#50FA7B" Foreground="Black" 
+                    FontWeight="Bold" Click="AddTaskBtn_Click" Margin="0,0,10,0"/>
+            <Button Content="Complete" Width="100" Background="#8BE9FD" Foreground="Black" 
+                    FontWeight="Bold" Click="CompleteTaskBtn_Click" Margin="0,0,10,0"/>
+            <Button Content="Delete" Width="100" Background="#FF5555" Foreground="White" 
+                    FontWeight="Bold" Click="DeleteTaskBtn_Click" Margin="0,0,10,0"/>
+            <Button Content="Refresh" Width="100" Background="#BD93F9" Foreground="White" 
+                    FontWeight="Bold" Click="RefreshBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
